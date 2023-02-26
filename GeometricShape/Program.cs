@@ -16,10 +16,7 @@ namespace GeometricShape
             Console.Write("Введите  сторону треугольника c = ");
             c = VvodTriangle(a, b);                        
             var triangle = new Triangle(a, b, c );
-            PrintShape(triangle); 
-                                  
-            //var triangle1 = new Triangle(3, 7, 4);
-            //PrintShape(triangle1); // Perimeter: 12  Area: 6         
+            PrintShape(triangle);            
 
             Console.Write("Введите ширину прямоугольника  width = ");
             width = Vvod();            
@@ -36,7 +33,6 @@ namespace GeometricShape
             void PrintShape(Shape shape)
             {
                 Console.WriteLine("Shape: {0}  Perimeter: {1:0.00}  Area: {2:0.00}", shape, shape.GetPerimeter(), shape.GetArea());
-                Console.WriteLine("Shape: {0}  Perimeter: {1}  Area: {2}", shape, shape.GetPerimeter(), shape.GetArea());
             }
 
             Console.ReadLine();

@@ -8,6 +8,7 @@ namespace ShapeLibrary
     /// </summary>
     public abstract class Shape
     {
+        public const double pi = Math.PI;
         /// <summary>
         /// абстрактный метод для получения периметра
         /// </summary>
@@ -16,66 +17,42 @@ namespace ShapeLibrary
         /// <summary>
         /// абстрактный метод для получения площади
         /// </summary>
-        public abstract double GetArea();
-
-        /// <summary>
-        /// Вычисление корня квадратного по методу Ньютона
-        /// </summary>
-        public double sqrt(double number)
-        {
-            double t;
-            double squareRoot = number / 2;
-            do
-            {
-                t = squareRoot;
-                squareRoot = (t + (number / t)) / 2;
-            } while ((t - squareRoot) != 0);
-
-            return squareRoot;
-        }
+        public abstract double GetArea();       
     }
+
     /// <summary>
     /// производный класс прямоугольника
-    /// </summary>
-    /// <param name="Width">Первая сторона</param>
-    /// <param name="Height">Вторая сторона</param>
-    /// <exception cref="ArgumentOutOfRangeException">Если сторона имеет отрицательное значение или не является числом</exception>    
-    public class Rectangle : Shape
-    {
-        float width = 0;
-        float height = 0;
-        public float Width
+    /// </summary>    
+    public class Rectangle: Shape
+    {            
+        public float Width { get; }
+        
+        public float Height { get; }
+        
+        /// <summary>
+        /// Прямоугольник. Конструктор с параметрами
+        /// </summary>
+        /// <param name="width">Первая сторона</param>
+        /// <param name="height">Вторая сторона</param>       
+        /// <exception cref="ArgumentOutOfRangeException">Если сторона треугольника имеет отрицательное значение</exception>
+        public Rectangle(float width, float height)
         {
-            get { return width; }
-            set
-            {
-                if (value <= 0 || float.IsNaN(value))
-                    throw new ArgumentOutOfRangeException("Сторона должна быть числом больше 0");
-                else
-                    width = value;
-            }
-        }
-        public float Height
-        {
-            get { return height; }
-            set
-            {
-                if (value <= 0 || float.IsNaN(value))
-                    throw new ArgumentOutOfRangeException("Сторона должна быть числом больше 0");
-                else
-                    height = value;
-            }
+            if (width < 0 || height < 0)
+                throw new ArgumentOutOfRangeException("Сторона не может быть отрицательной");
+
+            Width = width;
+            Height = height;            
         }
 
         /// <summary>
-        /// переопрелеление вычисления периметра прямоугольника
+        /// Переопрелеление. Вычисление периметра прямоугольника
         /// </summary>
-        public override double GetPerimeter() => width * 2 + height * 2;
+        public override double GetPerimeter() => Width * 2 + Height * 2;
 
         /// <summary>
-        /// переопрелеление вычисления площади прямоугольника
+        /// Переопрелеление. Вычисление площади прямоугольника
         /// </summary>
-        public override double GetArea() => width * height;
+        public override double GetArea() => Width * Height;
     }
 
     /// <summary>
@@ -83,77 +60,63 @@ namespace ShapeLibrary
     /// </summary>
     /// <param name="Radius">Радиус круга</param> 
     /// <exception cref="ArgumentOutOfRangeException">Если радиус круга имеет отрицательное значение или не является числом</exception>
-
     public class Circle : Shape
-    {
-        double radius = 0;
-        public double Radius
+    {       
+        public double Radius { get; }
+        
+        /// <summary>
+        /// Круг. Конструктор с параметрами
+        /// </summary>
+        /// <param name="radius">Радиус круга</param> 
+        /// <exception cref="ArgumentOutOfRangeException">Если радиус круга имеет отрицательное значение</exception>
+        public Circle(double radius)
         {
-            get { return radius; }
-            set
-            {
-                if (value <= 0 || double.IsNaN(value))
-                    throw new ArgumentOutOfRangeException("Радиус должен быть числом больше 0");
-                else
-                    radius = value;
-            }
+            if (radius < 0)
+                throw new ArgumentOutOfRangeException("Радиус не может быть отрицательным");
+
+            Radius = radius;
         }
 
         /// <summary>
-        /// переопрелеление вычисления длины окружности круга
+        /// Переопрелеление. Вычисление длины окружности круга
         /// </summary>
-        public override double GetPerimeter() => radius * 2 * 3.1415926535;
+        public override double GetPerimeter() => Radius * 2 * pi;
 
         /// <summary>
-        /// переопрелеление вычисления площади круга
+        /// Переопрелеление. Вычисление площади круга
         /// </summary>
-        public override double GetArea() => radius * radius * 3.1415926535;
+        public override double GetArea() => Radius * Radius * pi;
     }
 
     /// <summary>
     /// производный класс треугольника
-    /// </summary>
-    /// <param name="A">Первая сторона</param>
-    /// <param name="B">Вторая сторона</param>
-    /// <param name="C">Третья сторона</param>
-    /// <exception cref="ArgumentOutOfRangeException">Если сторона имеет отрицательное значение или не является числом</exception> 
+    /// </summary>   
     public class Triangle : Shape
-    {
-        float a = 0;
-        float b = 0;
-        float c = 0;
-        public float A
+    {        
+        public float A { get; }
+        
+        public float B { get; }
+       
+        public float C { get; }
+
+        /// <summary>
+        /// Треугольник. Конструктор с параметрами
+        /// </summary>
+        /// <param name="a">Первая сторона</param>
+        /// <param name="b">Вторая сторона</param>
+        /// <param name="c">Третья сторона</param>
+        /// <exception cref="ArgumentOutOfRangeException">Если сторона треугольника имеет отрицательное значение</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Если любря сторона треугольника Больше суммы двух других сторон</exception>
+        public Triangle(float a, float b, float c)
         {
-            get { return a; }
-            set
-            {
-                if (value <= 0 || double.IsNaN(value))
-                    throw new ArgumentOutOfRangeException("Сторона должна быть числом больше 0");
-                else
-                    a = value;
-            }
-        }
-        public float B
-        {
-            get { return b; }
-            set
-            {
-                if (value <= 0 || double.IsNaN(value))
-                    throw new ArgumentOutOfRangeException("Сторона должна быть числом больше 0");
-                else
-                    b = value;
-            }
-        }
-        public float C
-        {
-            get { return c; }
-            set
-            {
-                if (value <= 0 || double.IsNaN(value))
-                    throw new ArgumentOutOfRangeException("Сторона должна быть числом больше 0");
-                else
-                    c = value;
-            }
+            if (a < 0 || b < 0 || c < 0)
+                throw new ArgumentOutOfRangeException("Сторона не может быть отрицательной");
+             if (2 * new[] { a, b, c }.Max() > (c + a + b ))
+                throw new ArgumentOutOfRangeException("В треугольнике любая сторона должна быть не болдьше суииы двух других");
+
+            A = a;
+            B = b;
+            C = c;           
         }
 
         /// <summary>
@@ -162,37 +125,28 @@ namespace ShapeLibrary
         /// <returns></returns>
         public bool CheckIsRightAngled()
         {
-            var maxSide = new[] { a, b, c }.Max();
+            var maxSide = new[] { A, B, C }.Max();
             var maxSideSqr = maxSide * maxSide;
-            return maxSideSqr + maxSideSqr == a * a + b * b + c * c;
+            return maxSideSqr + maxSideSqr == A * A + B * B + C * C;
         }
 
         /// <summary>
-        /// переопрелеление вычисления периметра треугольника
+        /// Переопрелеление. Вычисление периметра треугольника
         /// </summary>
-        public override double GetPerimeter() => a + b + c;
+        public override double GetPerimeter() => A + B + C;
 
         /// <summary>
-        /// переопрелеление вычисления площади треугольника
+        /// Переопрелеление. Вычисление площади треугольника
         /// </summary>
         public override double GetArea()
         {
             if (CheckIsRightAngled())
-                return new[] { a * b, a * c, b * c }.Min() / 2d;
+                return new[] { A * B, A * C, B * C }.Min() / 2d;
             else
             {
-                double p = (a + b + c) / 2d;
-                return sqrt(p * (p - a) * (p - b) * (p - c));
+                double p = (A + B + C) / 2d;
+                return Math.Sqrt(p * (p - A) * (p - B) * (p - C));
             }
         }
-    }
-
-    /*
-    public class Triangle1(float a, float b, float c) : Ttiangle
-        {
-        A = a;
-        B = b;
-        C = c;
-        }
-    */
+    }   
 }

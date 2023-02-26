@@ -10,34 +10,28 @@ namespace GeometricShape
             float a, b, c, width, height;
             double radius;
             Console.Write("Введите сторону треугольника a = ");
-            a = Vvod();
-            //a = float.Parse(Console.ReadLine());
+            a = Vvod();            
             Console.Write("Введите  сторону треугольника b = ");
-            b = Vvod();
-            //b = float.Parse(Console.ReadLine());
+            b = Vvod();            
             Console.Write("Введите  сторону треугольника c = ");
-            c = VvodTriangle(a, b);
-            //c = float.Parse(Console.ReadLine());            
-            var triangle = new Triangle { A = a, B = b, C = c };
-            PrintShape(triangle); // Perimeter: 12  Area: 6
+            c = VvodTriangle(a, b);                        
+            var triangle = new Triangle(a, b, c );
+            PrintShape(triangle); 
                                   
-            //var triangle1 = new Triangle { A = 4, B = 7, C = 9 };
+            //var triangle1 = new Triangle(3, 7, 4);
             //PrintShape(triangle1); // Perimeter: 12  Area: 6         
 
             Console.Write("Введите ширину прямоугольника  width = ");
-            width = Vvod();
-            //width = float.Parse(Console.ReadLine());
+            width = Vvod();            
             Console.Write("Введите  высоту прямоугольника height = ");
-            height = Vvod();
-            //height = float.Parse(Console.ReadLine());
-            var rectanle = new Rectangle { Width = width, Height = height };
-            PrintShape(rectanle); // Perimeter: 80   Area: 400
-           
+            height = Vvod();            
+            var rectanle = new Rectangle(width, height );
+            PrintShape(rectanle); 
+            
             Console.Write("Введите радиус окружности radius = ");
-            radius = Vvod();
-            //radius = double.Parse(Console.ReadLine());
-            var circle = new Circle { Radius = radius };           
-            PrintShape(circle); // Perimeter: 1256  Area: 125600
+            radius = Vvod();            
+            var circle = new Circle(radius);           
+            PrintShape(circle); 
 
             void PrintShape(Shape shape)
             {

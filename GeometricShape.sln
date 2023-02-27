@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeometricShape", "Geometric
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShapeLibrary", "ShapeLibrary\ShapeLibrary.csproj", "{3FE63474-5A25-49E1-857F-4BF8FC9D84B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometricShapeTest", "GeometricShapeTest\GeometricShapeTest.csproj", "{4E67B661-FF8C-44B4-939F-4ABE1932E50E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeometricShapeTest", "GeometricShapeTest\GeometricShapeTest.csproj", "{4E67B661-FF8C-44B4-939F-4ABE1932E50E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlQuery", "SqlQuery", "{C1C76543-9BB2-4AE9-B1FB-B4BC23E1BEFB}"
+	ProjectSection(SolutionItems) = preProject
+		ProductCategory.sql = ProductCategory.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

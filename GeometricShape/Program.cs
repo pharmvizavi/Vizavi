@@ -1,5 +1,6 @@
 ﻿using System;
 using ShapeLibrary;
+using System.Linq;
 
 namespace GeometricShape
 {
@@ -55,7 +56,7 @@ namespace GeometricShape
             while (true)
             {
                 float c;
-                if (float.TryParse(Console.ReadLine(), out c) && c > 0 && ((c + c) < (c + a + b )))
+                if (float.TryParse(Console.ReadLine(), out c) && c > 0 && (2 * new[] { a, b, c }.Max() < (c + a + b)))
                     return c;
                 else
                 {
